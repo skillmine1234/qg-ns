@@ -1,0 +1,40 @@
+%br
+= link_to 'New Callback', new_ns_callback_path
+%br
+%h1 Listing Callbacks
+%br
+= "Total Count: #{@ns_callbacks.count}"
+= will_paginate @ns_callbacks, :page_links => true
+%br
+%table.table.table-bordered.table-striped.table-hover
+  .thead
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+      App Code
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+      Service Code
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+      Include Hash?
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+      Notify URL
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+      DownTime Notify URL  
+
+  .tbody
+    - @ns_callbacks.each do |ns_callback|
+      %tr
+        %td{:style=>'text-align:left;'}
+          = link_to 'Show', ns_callback
+        %td{:style=>'text-align:left;'}
+          = link_to 'Edit', edit_ns_callback_path(ns_callback)
+        %td{:style=>'text-align:left;'}
+          = ns_callback.app_code
+        %td{:style=>'text-align:left;'}
+          = ns_callback.sc_service.try(:name)
+        %td{:style=>'text-align:left;'}
+          = ns_callback.include_hash
+        %td{:style=>'text-align:left;'}
+          = ns_callback.notify_url
+        %td{:style=>'text-align:left;'}
+          = ns_callback.downtime_notify_url  
